@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FormFit — Train Better</title>
+<meta name="description" content="A beginner-friendly exercise, form, equipment and nutrition guide.">
+<style>
+:root{
+  --bg:#07110f;--panel:#0d1b18;--panel2:#10231f;--text:#f3f7f5;--muted:#a9bbb5;
+  --accent:#55e39b;--accent2:#2bbf78;--line:#1e3730;--danger:#ff807d;
+  --shadow:0 20px 60px rgba(0,0,0,.35);--radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+radial-gradient(circle at 80% 0%,rgba(53,214,139,.13),transparent 28rem),var(--bg);color:var(--text);line-height:1.55}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.container{width:min(1180px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,17,15,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:900;font-size:1.3rem;letter-spacing:-.04em}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;color:var(--muted);font-size:.93rem}.navlinks a:hover{color:var(--text)}
+.cta{background:var(--accent);color:#052015;border:0;padding:11px 17px;border-radius:999px;font-weight:800;cursor:pointer;transition:.25s}.cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(85,227,155,.22)}
+.hero{padding:76px 0 55px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:55px;min-height:650px}
+.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid #24453a;background:#0d211b;padding:7px 11px;border-radius:999px;color:#bdebd2;font-size:.8rem;margin-bottom:20px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent)}
+h1{font-size:clamp(3rem,6vw,5.8rem);line-height:.94;letter-spacing:-.075em;max-width:720px}
+.gradient{background:linear-gradient(100deg,#fff 20%,#65e8a2 75%);-webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:1.08rem;max-width:600px;margin:25px 0}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.secondary{background:transparent;color:var(--text);border:1px solid var(--line);padding:11px 17px;border-radius:999px;cursor:pointer}.secondary:hover{background:#10231f}
+.hero-art{position:relative;min-height:480px;display:grid;place-items:center}
+.glow{position:absolute;width:360px;height:360px;background:rgba(63,220,143,.16);filter:blur(55px);border-radius:50%}
+.hero-card{position:relative;width:min(430px,100%);aspect-ratio:4/5;background:linear-gradient(145deg,#122b24,#081512);border:1px solid #24463b;border-radius:35px;box-shadow:var(--shadow);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-card:after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.06);border-radius:25px}
+.figure{width:75%;filter:drop-shadow(0 15px 25px rgba(0,0,0,.35));animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.statbar{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(4,12,10,.8);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.08);padding:15px;border-radius:17px;display:flex;justify-content:space-between}
+.statbar small{color:var(--muted);display:block}.statbar b{font-size:1.05rem}
+section{padding:80px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px}.eyebrow{color:var(--accent);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.13em}.sectionhead h2{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.05em;margin-top:7px}.sectionhead p{color:var(--muted);max-width:530px}
+.searchrow{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.search{flex:1;min-width:220px;background:#0b1815;border:1px solid var(--line);color:white;padding:14px 16px;border-radius:14px;outline:none}.search:focus{border-color:var(--accent)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#0b1815;color:var(--muted);padding:9px 13px;border-radius:999px;cursor:pointer}.filter.active,.filter:hover{background:#123025;color:#caffdf;border-color:#2b5c4a}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:linear-gradient(145deg,#0d1b18,#0a1513);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.28s;cursor:pointer}
+.card:hover{transform:translateY(-6px);border-color:#2c5c4c;box-shadow:var(--shadow)}
+.cardimg{height:205px;background:radial-gradient(circle at 50% 50%,#17382d,#0a1714);display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.cardimg svg{width:78%;height:82%;transition:.3s}.card:hover .cardimg svg{transform:scale(1.05)}
+.cardbody{padding:18px}.tag{font-size:.72rem;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.card h3{font-size:1.18rem;margin:5px 0}.card p{font-size:.9rem;color:var(--muted)}
+.mini{display:flex;justify-content:space-between;color:#91aaa0;font-size:.78rem;margin-top:14px}.level{color:#cde8dc}
+.featuregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{padding:25px;background:#0c1b17;border:1px solid var(--line);border-radius:20px}.icon{font-size:1.6rem;margin-bottom:14px}.feature h3{margin-bottom:7px}.feature p{color:var(--muted);font-size:.93rem}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{background:#0c1a17;border:1px solid var(--line);border-radius:25px;padding:28px}
+.panel h3{font-size:1.45rem;margin-bottom:14px}.panel p{color:var(--muted)}
+.checklist{display:grid;gap:12px;margin-top:20px}.check{display:flex;gap:12px;align-items:flex-start;padding:12px;background:#10231e;border-radius:13px}.check b{display:block}.check span{color:var(--muted);font-size:.86rem}.tick{color:var(--accent);font-weight:900}
+.equipment{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.equip{background:#0c1a17;border:1px solid var(--line);padding:20px;border-radius:19px}.equip .emoji{font-size:2rem}.equip h3{margin:10px 0 4px}.equip p{font-size:.83rem;color:var(--muted)}
+.ctaBlock{background:linear-gradient(135deg,#123428,#0b1a16);border:1px solid #285845;border-radius:30px;padding:45px;display:flex;justify-content:space-between;align-items:center;gap:30px}.ctaBlock h2{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.05em}.ctaBlock p{color:var(--muted);max-width:620px;margin-top:8px}
+footer{padding:40px 0 60px;color:#70857d;border-top:1px solid var(--line);font-size:.85rem}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}
+.modalbox{width:min(900px,100%);max-height:92vh;overflow:auto;background:#0b1915;border:1px solid #2a5143;border-radius:26px;box-shadow:0 30px 100px #000;padding:26px;position:relative}
+.close{position:absolute;right:18px;top:15px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#10231e;color:white;cursor:pointer;font-size:1.3rem}
+.modalgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:25px;align-items:start}.modalart{background:#112a22;border-radius:20px;min-height:300px;display:grid;place-items:center}.modalart svg{width:90%;height:90%}
+.modal h2{font-size:2rem;letter-spacing:-.04em}.modal .desc{color:var(--muted);margin:8px 0 18px}.steps{display:grid;gap:9px}.step{display:flex;gap:10px}.num{background:#15372b;color:var(--accent);width:27px;height:27px;border-radius:50%;display:grid;place-items:center;font-weight:900;flex:none}
+.notice{margin-top:16px;padding:12px 14px;background:#241d14;border:1px solid #51402a;color:#ddc59d;border-radius:12px;font-size:.82rem}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:45px}.hero-art{min-height:400px}.grid{grid-template-columns:repeat(2,1fr)}.featuregrid{grid-template-columns:1fr}.equipment{grid-template-columns:repeat(2,1fr)}.split,.modalgrid{grid-template-columns:1fr}.navlinks{display:none}}
+@media(max-width:580px){.grid{grid-template-columns:1fr}.equipment{grid-template-columns:1fr 1fr}.hero-card{max-width:330px}.ctaBlock{padding:30px;display:block}.ctaBlock .cta{margin-top:20px}section{padding:60px 0}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container navin">
+    <a class="logo" href="#">FORM<span>FIT</span></a>
+    <div class="navlinks">
+      <a href="#exercises">Exercises</a><a href="#nutrition">Nutrition</a><a href="#equipment">Equipment</a><a href="#safety">Safety</a>
+    </div>
+    <a class="cta" href="#exercises">Start Training</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero container">
+  <div>
+    <div class="badge"><i class="dot"></i> FORM-FIRST FITNESS GUIDE</div>
+    <h1>Train with <span class="gradient">confidence.</span></h1>
+    <p>Learn what each exercise should look and feel like, choose the right equipment, build a balanced routine, and understand the basics of nutrition — all in one clean dashboard.</p>
+    <div class="actions"><a class="cta" href="#exercises">Explore exercises →</a><a class="secondary" href="#how">How it works</a></div>
+  </div>
+  <div class="hero-art">
+    <div class="glow"></div>
+    <div class="hero-card">
+      <svg class="figure" viewBox="0 0 300 390" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Exercise illustration">
+        <circle cx="150" cy="54" r="27" fill="#55E39B"/>
+        <path d="M124 89 Q150 74 176 89 L187 180 Q178 203 150 202 Q122 203 113 180Z" fill="#2BBF78"/>
+        <path d="M123 99 L74 143 L42 202" stroke="#9EF1C4" stroke-width="18" stroke-linecap="round"/>
+        <path d="M177 99 L226 143 L258 202" stroke="#9EF1C4" stroke-width="18" stroke-linecap="round"/>
+        <path d="M135 199 L111 284 L84 355" stroke="#55E39B" stroke-width="21" stroke-linecap="round"/>
+        <path d="M165 199 L189 284 L216 355" stroke="#55E39B" stroke-width="21" stroke-linecap="round"/>
+        <path d="M67 204 L105 204" stroke="#D8FFF0" stroke-width="8" stroke-linecap="round"/>
+        <path d="M195 204 L233 204" stroke="#D8FFF0" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="42" cy="202" r="10" fill="#D8FFF0"/><circle cx="258" cy="202" r="10" fill="#D8FFF0"/>
+        <circle cx="84" cy="355" r="11" fill="#D8FFF0"/><circle cx="216" cy="355" r="11" fill="#D8FFF0"/>
+      </svg>
+      <div class="statbar"><div><small>Technique</small><b>Step-by-step</b></div><div><small>Library</small><b>18 exercises</b></div><div><small>Goal</small><b>Move well</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+<div class="container">
+  <div class="sectionhead"><div><div class="eyebrow">Why FormFit</div><h2>Everything you need before you lift.</h2></div><p>Good training is more than picking up heavy weights. Learn movement, progression, recovery and equipment basics.</p></div>
+  <div class="featuregrid">
+    <div class="feature"><div class="icon">🎯</div><h3>Form before load</h3><p>Learn setup, movement cues and common mistakes before worrying about heavier weights.</p></div>
+    <div class="feature"><div class="icon">🥗</div><h3>Balanced nutrition</h3><p>Build meals around protein foods, carbohydrates, vegetables or fruit, healthy fats and enough fluids.</p></div>
+    <div class="feature"><div class="icon">🛡️</div><h3>Train safely</h3><p>Use sensible progression, warm up, keep equipment secure and stop when pain feels sharp or unusual.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="exercises">
+<div class="container">
+  <div class="sectionhead"><div><div class="eyebrow">Exercise library</div><h2>Learn the movement.</h2></div><p>Tap any exercise for a visual guide, technique cues, muscles involved and beginner-friendly equipment notes.</p></div>
+  <div class="searchrow">
+    <input id="search" class="search" placeholder="Search exercises — e.g. chest, squat, shoulders..." aria-label="Search exercises">
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="grid" id="exerciseGrid"></div>
+</div>
+</section>
+
+<section id="nutrition">
+<div class="container">
+  <div class="sectionhead"><div><div class="eyebrow">Nutrition basics</div><h2>Eat to support training.</h2></div><p>There is no single “perfect diet.” Especially for teenagers, regular balanced meals and adequate nutrition matter more than aggressive dieting.</p></div>
+  <div class="split">
+    <div class="panel">
+      <h3>Build a balanced plate</h3>
+      <p>At most meals, combine several food groups rather than relying on one food or supplement.</p>
+      <div class="checklist">
+        <div class="check"><b class="tick">01</b><div><b>Protein foods</b><span>Milk/curd, eggs, dal, beans, paneer, soy, fish or meat if you eat them.</span></div></div>
+        <div class="check"><b class="tick">02</b><div><b>Carbohydrates</b><span>Rice, roti, oats, potatoes, fruits and other grains provide training fuel.</span></div></div>
+        <div class="check"><b class="tick">03</b><div><b>Plants + micronutrients</b><span>Include vegetables and fruit across the day in a variety of colours.</span></div></div>
+        <div class="check"><b class="tick">04</b><div><b>Healthy fats</b><span>Nuts, seeds, dairy, avocado and suitable cooking oils can fit into balanced meals.</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Before & after training</h3>
+      <p>Choose foods you tolerate well. You do not need complicated supplements to begin strength training.</p>
+      <div class="checklist">
+        <div class="check"><b class="tick">↗</b><div><b>Before</b><span>A normal meal or snack with carbohydrates and some protein can work.</span></div></div>
+        <div class="check"><b class="tick">↘</b><div><b>After</b><span>Have a normal balanced meal/snack containing protein and carbohydrate.</span></div></div>
+        <div class="check"><b class="tick">💧</b><div><b>Hydration</b><span>Drink regularly through the day and more around exercise/heat. Avoid forcing excessive water.</span></div></div>
+        <div class="check"><b class="tick">😴</b><div><b>Recovery</b><span>Sleep and rest are part of training — not something to “earn.”</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="equipment">
+<div class="container">
+  <div class="sectionhead"><div><div class="eyebrow">Equipment guide</div><h2>Know what you're using.</h2></div><p>Simple rules for common gym equipment can make training safer and more effective.</p></div>
+  <div class="equipment">
+    <div class="equip"><div class="emoji">🏋️</div><h3>Dumbbells</h3><p>Keep a controlled path and choose a weight you can move without losing form.</p></div>
+    <div class="equip"><div class="emoji">🪑</div><h3>Bench</h3><p>Check the adjustment and stability before loading it. Keep your body supported.</p></div>
+    <div class="equip"><div class="emoji">🧵</div><h3>Cables</h3><p>Set the pin securely and check the attachment before each set.</p></div>
+    <div class="equip"><div class="emoji">🔩</div><h3>Machines</h3><p>Adjust seat and pads so joints line up with the machine's intended movement.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="safety">
+<div class="container">
+  <div class="ctaBlock">
+    <div><div class="eyebrow">Smart training</div><h2>Progress slowly. Move well.</h2><p>If you're new to a gym, ask a qualified trainer to demonstrate unfamiliar equipment. Stop an exercise if you get sharp pain, dizziness, chest pain or feel unwell.</p></div>
+    <a class="cta" href="#exercises">View library →</a>
+  </div>
+</div>
+</section>
+</main>
+
+<footer><div class="container">© 2026 FormFit · Educational fitness guide. This site does not replace individualized medical or professional training advice.</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modalbox">
+    <button class="close" id="close" aria-label="Close">×</button>
+    <div class="modalgrid">
+      <div class="modalart" id="modalArt"></div>
+      <div><div class="tag" id="modalTag"></div><h2 id="modalTitle"></h2><p class="desc" id="modalDesc"></p>
+        <h3 style="margin-bottom:10px">How to do it</h3><div class="steps" id="modalSteps"></div>
+        <div class="notice" id="modalNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const exercises = [
+{name:"Barbell Squat",cat:"Legs",level:"Intermediate",muscles:"Quads · Glutes · Core",note:"Start with a comfortable load. If you are learning the barbell squat, have a qualified trainer check your setup.",desc:"A foundational lower-body movement. Keep the movement controlled and let your knees track in the same general direction as your toes.",steps:["Set your feet around shoulder width and brace your midsection.","Unrack safely and keep the bar balanced over your mid-foot.","Bend at the hips and knees while keeping your torso controlled.","Descend only as far as you can maintain a stable position.","Drive through the floor and stand tall without snapping the knees."],pose:"squat"},
+{name:"Goblet Squat",cat:"Legs",level:"Beginner",muscles:"Quads · Glutes · Core",note:"A useful beginner option because the dumbbell is held in front of the body.",desc:"A simple squat variation that teaches bracing, knee tracking and controlled depth.",steps:["Hold one dumbbell close to your chest.","Brace your abdomen and keep your chest comfortably lifted.","Sit down and back while bending your knees.","Keep your feet planted and knees tracking with your toes.","Stand by pushing the floor away."],pose:"squat"},
+{name:"Romanian Deadlift",cat:"Legs",level:"Intermediate",muscles:"Hamstrings · Glutes · Back",note:"Keep the weight close to your legs. Do not chase range of motion by rounding your back.",desc:"A hip-hinge movement that trains the posterior chain.",steps:["Stand tall with weights close to your thighs.","Soften your knees and push your hips backward.","Keep the weights close while your torso inclines.","Stop when hamstring tension is strong without losing position.","Push your hips forward to return to standing."],pose:"hinge"},
+{name:"Walking Lunge",cat:"Legs",level:"Beginner",muscles:"Quads · Glutes · Balance",note:"Use a shorter range or hold onto support if balance is difficult.",desc:"A single-leg movement that combines strength with balance and coordination.",steps:["Stand tall with feet about hip width apart.","Step forward and lower under control.","Keep the front knee tracking over the foot.","Push through the front foot and bring the other leg forward.","Repeat on the other side."],pose:"lunge"},
+{name:"Push-Up",cat:"Chest",level:"Beginner",muscles:"Chest · Triceps · Shoulders",note:"Use an elevated surface for an easier version instead of forcing poor form.",desc:"A bodyweight pressing exercise with many scalable variations.",steps:["Place hands slightly wider than shoulder width.","Make a straight line from head through hips to feet.","Brace your core and lower your chest under control.","Keep elbows at a comfortable angle rather than flaring them hard.","Push the floor away until your arms are straight."],pose:"pushup"},
+{name:"Dumbbell Bench Press",cat:"Chest",level:"Beginner",muscles:"Chest · Triceps · Shoulders",note:"Use a load you can control. Get assistance when placing heavy dumbbells into position.",desc:"A horizontal pressing movement using two independent weights.",steps:["Set the bench securely and sit with dumbbells on your thighs.","Lie back and position the dumbbells over your chest.","Lower them slowly while keeping your wrists stacked.","Press upward without aggressively bouncing or slamming weights together.","Lower them safely before sitting up."],pose:"press"},
+{name:"Dumbbell Row",cat:"Back",level:"Beginner",muscles:"Lats · Upper Back · Biceps",note:"Keep the shoulder controlled instead of jerking the weight upward.",desc:"A pulling exercise that trains the upper back and arm muscles.",steps:["Support one hand and knee if using a bench-supported version.","Keep your spine neutral and shoulders controlled.","Pull the dumbbell toward your hip.","Pause briefly without twisting your torso.","Lower the weight slowly."],pose:"row"},
+{name:"Lat Pulldown",cat:"Back",level:"Beginner",muscles:"Lats · Upper Back · Biceps",note:"Do not pull the bar behind your neck. Use a comfortable range in front of you.",desc:"A cable-machine vertical pull that helps build back strength.",steps:["Adjust the thigh pad so you are secure.","Grip the bar comfortably wider than shoulder width.","Brace and pull the bar toward the upper chest.","Keep your torso mostly stable rather than swinging.","Control the bar back to the start."],pose:"pulldown"},
+{name:"Seated Cable Row",cat:"Back",level:"Beginner",muscles:"Mid Back · Lats · Biceps",note:"Keep the cable path smooth and avoid using momentum to finish repetitions.",desc:"A horizontal pulling movement for the back and arms.",steps:["Sit tall with feet planted and knees slightly bent.","Grip the attachment and brace your torso.","Pull the handle toward your lower ribs.","Squeeze the upper back without shrugging hard.","Return the handle under control."],pose:"row"},
+{name:"Overhead Press",cat:"Shoulders",level:"Intermediate",muscles:"Shoulders · Triceps · Core",note:"If overhead movement causes pain or feels unstable, stop and get technique guidance.",desc:"A vertical press that trains the shoulders and triceps.",steps:["Stand or sit with the weights at shoulder height.","Brace your trunk and keep wrists stacked over forearms.","Press upward in a controlled path.","Avoid leaning backward to turn it into a different movement.","Lower the weights slowly."],pose:"press"},
+{name:"Lateral Raise",cat:"Shoulders",level:"Beginner",muscles:"Side Delts · Upper Back",note:"Light weights are usually enough. Do not swing the body to lift heavier dumbbells.",desc:"An isolation movement for the lateral shoulder muscles.",steps:["Stand tall with light dumbbells by your sides.","Keep a small bend in your elbows.","Raise your arms outward under control.","Stop around shoulder height or at a comfortable range.","Lower slowly and repeat."],pose:"raise"},
+{name:"Biceps Curl",cat:"Arms",level:"Beginner",muscles:"Biceps · Forearms",note:"Keep the upper arm relatively still instead of throwing the weight upward.",desc:"A basic elbow-flexion exercise for the biceps.",steps:["Stand with dumbbells by your sides.","Keep elbows close to your torso.","Curl the weights upward without swinging.","Pause briefly near the top.","Lower under control."],pose:"curl"},
+{name:"Triceps Pushdown",cat:"Arms",level:"Beginner",muscles:"Triceps",note:"Choose a stable cable attachment and keep the elbows controlled.",desc:"A cable isolation exercise for the back of the upper arm.",steps:["Set the cable around upper-chest height.","Stand tall and hold the attachment securely.","Keep elbows close to your sides.","Push the attachment down until your arms straighten comfortably.","Return slowly."],pose:"pushdown"},
+{name:"Plank",cat:"Core",level:"Beginner",muscles:"Core · Shoulders · Glutes",note:"Quality time under tension matters more than holding a poor position for longer.",desc:"An isometric core exercise focused on bracing and body control.",steps:["Place forearms and toes on the floor.","Create a straight, comfortable line through your body.","Brace your abdomen and squeeze your glutes.","Breathe steadily while holding the position.","Stop before your lower back starts sagging."],pose:"plank"},
+{name:"Dead Bug",cat:"Core",level:"Beginner",muscles:"Deep Core · Hip Flexors",note:"Move slowly and keep your lower back controlled against the floor.",desc:"A beginner-friendly core-control drill.",steps:["Lie on your back with hips and knees bent.","Brace your abdomen gently.","Slowly extend the opposite arm and leg.","Return to the start without losing trunk control.","Alternate sides."],pose:"floor"},
+{name:"Calf Raise",cat:"Legs",level:"Beginner",muscles:"Calves",note:"Use a stable support if needed and avoid bouncing at the bottom.",desc:"A simple calf-strengthening movement that can be performed standing.",steps:["Stand tall with feet about hip width apart.","Hold stable support if needed.","Rise onto the balls of your feet.","Pause briefly at the top.","Lower slowly through the full comfortable range."],pose:"calf"},
+{name:"Glute Bridge",cat:"Glutes",level:"Beginner",muscles:"Glutes · Hamstrings · Core",note:"Keep the movement controlled and avoid over-arching your lower back.",desc:"A floor-based hip-extension exercise that is easy to scale.",steps:["Lie on your back with knees bent and feet planted.","Brace gently and keep ribs controlled.","Push through your feet to lift your hips.","Squeeze your glutes at the top without overextending.","Lower under control."],pose:"bridge"},
+{name:"Bodyweight Step-Up",cat:"Legs",level:"Beginner",muscles:"Quads · Glutes · Balance",note:"Use a low, sturdy platform that cannot slide.",desc:"A unilateral leg exercise using a stable step or box.",steps:["Place your whole foot on the platform.","Lean slightly forward and push through that foot.","Stand tall on the platform without jumping.","Step down with control.","Alternate sides."],pose:"stepup"}
+];
+
+const filters=["All","Legs","Chest","Back","Shoulders","Arms","Core","Glutes"];
+const filterBox=document.getElementById("filters"), grid=document.getElementById("exerciseGrid"), search=document.getElementById("search");
+let active="All";
+
+filters.forEach(f=>{const b=document.createElement("button");b.className="filter"+(f==="All"?" active":"");b.textContent=f;b.onclick=()=>{active=f;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};filterBox.appendChild(b)});
+
+function svgPose(type){
+  const common=`<circle cx="150" cy="42" r="23" fill="#55E39B"/><path d="M127 73 Q150 60 173 73 L180 165 Q150 188 120 165Z" fill="#2BBF78"/>`;
+  const limb=`stroke="#A7F5CB" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"`;
+  let body="";
+  if(type==="squat") body=`<path d="M125 85 L80 125 L72 183" ${limb}/><path d="M175 85 L220 125 L228 183" ${limb}/><path d="M130 165 L112 220 L75 255" ${limb}/><path d="M170 165 L188 220 L225 255" ${limb}/>`;
+  if(type==="hinge") body=`<path d="M127 88 L92 138 L65 182" ${limb}/><path d="M173 88 L208 138 L235 182" ${limb}/><path d="M130 164 L175 211 L132 260" ${limb}/><path d="M170 164 L215 211 L258 260" ${limb}/>`;
+  if(type==="lunge") body=`<path d="M126 88 L80 145 L70 205" ${limb}/><path d="M174 88 L215 130 L242 180" ${limb}/><path d="M133 164 L105 235 L70 265" ${limb}/><path d="M168 164 L205 210 L205 275" ${limb}/>`;
+  if(type==="pushup") body=`<path d="M125 92 L95 145 L60 205" ${limb}/><path d="M175 92 L205 145 L240 205" ${limb}/><path d="M125 160 L180 184 L235 205" ${limb}/><path d="M170 166 L120 195 L72 205" ${limb}/>`;
+  if(type==="press") body=`<path d="M125 95 L78 55" ${limb}/><path d="M175 95 L222 55" ${limb}/><path d="M135 165 L125 260 L105 325" ${limb}/><path d="M165 165 L175 260 L195 325" ${limb}/><circle cx="73" cy="50" r="13" fill="#D8FFF0"/><circle cx="227" cy="50" r="13" fill="#D8FFF0"/>`;
+  if(type==="row") body=`<path d="M125 90 L80 135 L55 190" ${limb}/><path d="M175 90 L220 135 L245 190" ${limb}/><path d="M130 165 L175 215 L130 275" ${limb}/><path d="M170 165 L215 215 L260 275" ${limb}/`;
+  if(type==="pulldown") body=`<path d="M125 88 L95 55 L72 30" ${limb}/><path d="M175 88 L205 55 L228 30" ${limb}/><path d="M130 165 L125 270 L108 330" ${limb}/><path d="M170 165 L175 270 L192 330" ${limb}/><path d="M55 28 L245 28" stroke="#D8FFF0" stroke-width="7" stroke-linecap="round"/>`;
+  if(type==="raise") body=`<path d="M125 92 L70 120" ${limb}/><path d="M175 92 L230 120" ${limb}/><path d="M135 165 L125 265 L105 330" ${limb}/><path d="M165 165 L175 265 L195 330" ${limb}/><circle cx="67" cy="121" r="11" fill="#D8FFF0"/><circle cx="233" cy="121" r="11" fill="#D8FFF0"/>`;
+  if(type==="curl") body=`<path d="M125 92 L90 140 L75 190" ${limb}/><path d="M175 92 L210 140 L225 190" ${limb}/><path d="M135 165 L125 265 L105 330" ${limb}/><path d="M165 165 L175 265 L195 330" ${limb}/`;
+  if(type==="pushdown") body=`<path d="M125 92 L105 135 L105 205" ${limb}/><path d="M175 92 L195 135 L195 205" ${limb}/><path d="M135 165 L125 265 L105 330" ${limb}/><path d="M165 165 L175 265 L195 330" ${limb}/<path d="M70 205 L230 205" stroke="#D8FFF0" stroke-width="7" stroke-linecap="round"/>`;
+  if(type==="plank") body=`<path d="M120 105 L75 145 L45 205" ${limb}/><path d="M180 105 L220 145 L250 205" ${limb}/><path d="M125 155 L175 175 L230 205" ${limb}/><path d="M170 165 L120 190 L70 205" ${limb}/`;
+  if(type==="floor") body=`<path d="M125 95 L80 150 L55 215" ${limb}/><path d="M175 95 L220 150 L245 215" ${limb}/><path d="M130 165 L100 215 L65 180" ${limb}/><path d="M170 165 L200 215 L235 180" ${limb}/`;
+  if(type==="calf") body=`<path d="M125 90 L80 145 L72 205" ${limb}/><path d="M175 90 L220 145 L228 205" ${limb}/><path d="M135 165 L130 270 L105 330" ${limb}/><path d="M165 165 L170 270 L195 330" ${limb}/`;
+  if(type==="bridge") body=`<path d="M125 105 L75 150 L55 205" ${limb}/><path d="M175 105 L225 150 L245 205" ${limb}/><path d="M125 165 L90 225 L125 270" ${limb}/><path d="M175 165 L210 225 L175 270" ${limb}/`;
+  if(type==="stepup") body=`<path d="M125 90 L80 135 L70 205" ${limb}/><path d="M175 90 L220 135 L230 205" ${limb}/><path d="M130 165 L120 230 L95 275" ${limb}/><path d="M170 165 L205 210 L205 275" ${limb}/><path d="M75 278 L230 278" stroke="#D8FFF0" stroke-width="13" stroke-linecap="round"/>`;
+  return `<svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${common}${body}</svg>`;
+}
+
+function render(){
+ const q=search.value.toLowerCase().trim();
+ const data=exercises.filter(e=>(active==="All"||e.cat===active) && (!q || (e.name+" "+e.cat+" "+e.muscles).toLowerCase().includes(q)));
+ grid.innerHTML=data.map((e,i)=>`<article class="card" onclick="openExercise(${exercises.indexOf(e)})">
+   <div class="cardimg">${svgPose(e.pose)}</div><div class="cardbody"><div class="tag">${e.cat}</div><h3>${e.name}</h3><p>${e.muscles}</p><div class="mini"><span>${e.level}</span><span>View guide →</span></div></div></article>`).join("");
+ if(!data.length) grid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#9eb1aa">No exercises found. Try another search.</div>';
+}
+search.addEventListener("input",render);
+render();
+
+const modal=document.getElementById("modal");
+function openExercise(i){
+ const e=exercises[i];document.getElementById("modalArt").innerHTML=svgPose(e.pose);
+ document.getElementById("modalTag").textContent=e.cat+" · "+e.level;
+ document.getElementById("modalTitle").textContent=e.name;
+ document.getElementById("modalDesc").textContent=e.desc+"  •  Main focus: "+e.muscles+".";
+ document.getElementById("modalSteps").innerHTML=e.steps.map((s,i)=>`<div class="step"><span class="num">${i+1}</span><span>${s}</span></div>`).join("");
+ document.getElementById("modalNote").textContent="Tip: "+e.note;
+ modal.classList.add("open");document.body.style.overflow="hidden";
+}
+function closeModal(){modal.classList.remove("open");document.body.style.overflow=""}
+document.getElementById("close").onclick=closeModal;
+modal.onclick=e=>{if(e.target===modal)closeModal()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+</script>
+</body>
+</html>
